@@ -5,6 +5,17 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
 
+
+
+
+
+this.view.onContextMenu = (_event) => {
+    _event.preventDefault()
+}
+
+window.addEventListener('contextmenu', this.view.onContextMenu)
+
+
 /**
  * Base
  */
@@ -29,12 +40,11 @@ let mixer = null
 let model = null
 gltfLoader.load(
     '/models/logo.glb',
-    (gltf) =>
-    {
-        model = gltf.scene ; 
+    (gltf) => {
+        model = gltf.scene;
         model.position.x = 0
         model.position.y = 0
-        scene.add(gltf.scene) 
+        scene.add(gltf.scene)
 
     }
 )
@@ -64,8 +74,7 @@ const sizes = {
     height: window.innerHeight
 }
 
-window.addEventListener('resize', () =>
-{
+window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
@@ -110,21 +119,18 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 const clock = new THREE.Clock()
 let previousTime = 0
 
-const tick = () =>
-{
+const tick = () => {
     const elapsedTime = clock.getElapsedTime()
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
 
-    if(mixer)
-    {
+    if (mixer) {
         mixer.update(deltaTime)
     }
 
-    if(model)
-    {
-        model.rotation.y +=0.005
-        
+    if (model) {
+        model.rotation.y += 0.005
+
     }
 
 
