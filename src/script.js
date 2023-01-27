@@ -9,11 +9,6 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
 
 
-this.view.onContextMenu = (_event) => {
-    _event.preventDefault()
-}
-
-window.addEventListener('contextmenu', this.view.onContextMenu)
 
 
 /**
@@ -99,7 +94,7 @@ scene.add(camera)
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.target.set(0, 1, 0)
-controls.enableDamping = true
+controls.enabled = false
 
 /**
  * Renderer
